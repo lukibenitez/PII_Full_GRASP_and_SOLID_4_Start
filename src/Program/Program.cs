@@ -16,14 +16,16 @@ namespace Full_GRASP_And_SOLID
 
         private static List<Equipment> equipmentCatalog = new List<Equipment>();
 
+        //Para poder utilizar correctamente el patron Creator le asigne la responsabilidad a la clase Recipe, ya que, era la que mas se adecuaba para crear las instancias. Por lo tanto modifique el Program para que solo lo referencie y en Recipe cree la instancia.
         public static void Main(string[] args)
         {
             PopulateCatalogs();
 
             Recipe recipe = new Recipe();
             recipe.FinalProduct = GetProduct("Café con leche");
-            recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
-            recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
+            recipe.AddStep(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120);
+            recipe.AddStep(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60);
+
 
             IPrinter printer;
             printer = new ConsolePrinter();
